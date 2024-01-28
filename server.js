@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 export const port = process.env.PORT || 5100;
 
 const corsOptions = {
-  origin: `https://jobify-ig5c.onrender.com`,
+  origin: `http://localhost:${port}`,
   credentials: true,
 };
 
