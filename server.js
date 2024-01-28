@@ -44,8 +44,11 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
+const port = process.env.PORT || 4000;
+
 const corsOptions = {
-  origin: 'http://localhost:5100',
+  origin: `http://localhost:${port}`,
   credentials: true,
 };
 
@@ -71,8 +74,6 @@ app.use('*', (req, res, next) => {
 });
 
 app.use(errorHandlerMiddleware);
-
-const port = process.env.PORT || 4000;
 
 try {
   await mongoose.connect(process.env.MONGO_URL);
