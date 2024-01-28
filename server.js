@@ -45,7 +45,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const port = process.env.PORT || 4000;
+export const port = process.env.PORT || 5100;
 
 const corsOptions = {
   origin: `http://localhost:${port}`,
