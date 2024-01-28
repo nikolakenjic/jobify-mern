@@ -4,7 +4,7 @@ dotenv.config();
 import express from 'express';
 const app = express();
 import morgan from 'morgan';
-import cors from 'cors';
+// import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { StatusCodes } from 'http-status-codes';
@@ -35,24 +35,24 @@ app.use(express.json());
 app.use(cookieParser());
 
 // In frontend to abort CORS policy
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, PATCH, DELETE'
-  );
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'GET, POST, PUT, PATCH, DELETE'
+//   );
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 
-export const port = process.env.PORT || 5100;
+const port = process.env.PORT || 5100;
 
-const corsOptions = {
-  origin: `http://localhost:${port}`,
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: `http://localhost:${port}`,
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Test server
 app.get('/api/v1/test', (req, res, next) => {
