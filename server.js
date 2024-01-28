@@ -35,15 +35,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // In frontend to abort CORS policy
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader(
-//     'Access-Control-Allow-Methods',
-//     'GET, POST, PUT, PATCH, DELETE'
-//   );
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, PATCH, DELETE'
+  );
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 const corsOptions = {
   origin: 'http://localhost:5100',
   credentials: true,
@@ -64,17 +64,6 @@ app.use('/api/v1/users', authenticateUser, userRoutes);
 app.get('*', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, './public', 'index.html'));
 });
-
-// We can use now in Node try catch without using f-n IMPORTANT
-// try {
-//   const response = await fetch(
-//     'https://www.course-api.com/react-useReducer-cart-project'
-//   );
-//   const cartData = await response.json();
-//   console.log(cartData);
-// } catch (err) {
-//   console.log(err);
-// }
 
 // ERROR
 app.use('*', (req, res, next) => {
